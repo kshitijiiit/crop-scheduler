@@ -1,0 +1,164 @@
+<div class="row">
+    <div class="span6 offset3">
+        <h3 class="header " >Add Crop Details </h3>
+        <div class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" >Crop Name</label>
+                <div class="controls">
+                    <input type="text"  placeholder="Crop Name" ng-model="crop">
+                </div>
+
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" >Start Early</label>
+                <div class="controls">
+                    <input type="number" min="1" max="52" placeholder="Week Number" ng-model="startEarly">
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" >Start End</label>
+                <div class="controls">
+                    <input type="number"  min="1" max="52" placeholder="Week Number" ng-model="startEnd">
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" >Total Duration of Crop</label>
+                <div class="controls">
+                    <input type="number" min="1" max="52" placeholder="Total Weeks Required" ng-model="duration">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" >Investment Required (1-10) per acre </label>
+                <div class="controls">
+                    <input type="number"  min="1" max="10" placeholder="Total Investment Required " ng-model="investment">
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" >Profit (1-10)</label>
+                <div class="controls">
+                    <input type="number" min="1" max="10" placeholder="Profit" ng-model="profit">
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" >Risk (1-10) </label>
+                <div class="controls">
+                    <input type="number" min="1" max="10" placeholder="Risk" ng-model="risk">
+                </div>
+            </div>
+
+
+
+
+            <div class="control-group">
+                <label class="control-label" >Soil Types</label>
+                <div class="controls">
+                    <div class="checkbox" ng-repeat="soil in soilTypes">
+                        <label>
+                            <input ng-model="soilTypes[$index][1]"  type="checkbox">  {{soil[0]}}
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" >Number of Phenophase</label>
+                <div class="controls">
+                    <input type="number" min="1" max="10" placeholder="Integer such as 4" ng-model="pheno">
+                </div>
+            </div>
+
+            <div class="control-group">
+
+                <table  class="table">
+                    <thead >
+                    <th>PhenoPhase Name</th>
+                    <th>Water Requirement</th>
+                    <th>Labours </th>
+                    <th>Duration</th>
+                    <th>Min Temp</th>
+                    <th>Max Temp</th>
+
+                    </thead>
+                    <tr ng-repeat="row in phenoArray[pheno]">
+                        <td>
+                            <input type="text" placeholder="PhenoPhase Name" ng-model="phenoInput[row-1].phenoName">
+                        </td>
+
+                        <td>
+                            <input type="number" step=0.1 placeholder="Hours/day" ng-model="phenoInput[row-1].water">
+                        </td>
+
+                        <td>
+                            <input type="number" min="1" max="10" step=0.1  placeholder="Labour/day" ng-model="phenoInput[row-1].labour">
+                        </td>
+
+                        <td>
+                            <input type="number" step=0.1 placeholder="Duration of phenophase" ng-model="phenoInput[row-1].duration">
+                        </td>
+
+                        <td>
+                            <input type="number" step=0.1 placeholder="Min Temp" ng-model="phenoInput[row-1].tmin">
+                        </td>
+
+                        <td>
+                            <input type="number" step=0.1 placeholder="Max Temp" ng-model="phenoInput[row-1].tmax">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" ng-click="uploadCrop()" class="btn-success">Upload Crop</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div ng-switch="error1">
+            <div ng-switch-when=1>
+                <p class="text-error"> {{errorMsg1}}<p>
+
+            </div>
+
+        </div>
+        <p class="text-error"> {{messageFromServer}}<p>
+         <!--{{result}}-->
+    </div>
+
+
+    <!--    <div class="span4 offset4">
+            <div ng-switch="error2">
+                <div ng-switch-when=1>
+                    <p class="text-error"> {{errorMsg2}}<p>
+                </div>
+    
+            </div>
+            <h3 class="header " >Upload csv file</h3>
+            <div class="control-group">
+                <div class="controls">
+                    <input ng-model="file" type="file"/>
+                </div>
+            </div>
+            
+            
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" ng-click="uploadFile()" class="btn-success">Upload CSV</button>
+                </div>
+            </div>
+        </div>-->
+</div>
+

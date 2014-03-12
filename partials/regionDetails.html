@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="span6 offset3">
+        <div ng-switch="error1">
+            <div ng-switch-when=1>
+                <p class="text-error"> {{errorMsg1}}<p>
+            </div>
+
+        </div>
+
+
+        <h3 class="header " >Add Weather Details </h3>
+
+        <div class="form-horizontal">
+
+
+            <div class="control-group">
+                <label class="control-label" >District</label>
+                <div class="controls">
+                    <input type="text" placeholder="District Name" ng-model="district">
+                </div>
+
+            </div>
+
+            <div class="control-group">
+
+                <table  class="table">
+                    <thead >
+                    <th>Week Id</th>
+
+                    <th>District Temperature Maximum</th>
+                    <th>District Temperature Minimum</th>
+                    <th>RainFall in mm </th>
+                    </thead>
+                    <tr ng-repeat="weather in weatherInput">
+                        <td>{{$index+1}}</td>
+                        <td>
+                            <input type="number" min="0" max="50"  step=0.1 type="text" placeholder="Max Temp" ng-model="weather.tmax">
+                        </td> 
+                        <td>
+                            <input type="number" min="0" max="50"  step=0.1 type="text" placeholder="Min Temp" ng-model="weather.tmin">
+                        </td>
+
+
+
+                        <td>
+                            <input type="number" min="0" step=0.1 placeholder="mm/day" ng-model="weather.rainfall">
+                        </td>
+
+
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" ng-click="uploadDetails()" class="btn-success">Upload Details</button>
+                </div>
+            </div>
+            <!--            <div class="control-group">
+                            <h5>{{messageFromServer}}</h5>
+                        </div>-->
+
+            
+
+        </div>
+    </div>
+       <div class="span4 offset4">
+            <div ng-switch="error2">
+                <div ng-switch-when=1>
+                    <p class="text-error"> {{errorMsg2}}<p>
+                </div>
+    
+            </div>
+            <h3 class="header " >Upload csv file</h3>
+            <h6 class="header " >Beware: 1st line contains district Name </br> 
+                All other lines have 1st column Tmax, 2nd Tmin, 3rd rainfall</h6>
+            <div class="control-group">
+                <div class="controls">
+                    <input  fileread="uploadme" type="file"/>
+                    </br>{{uploadme}}</br>
+                </div>
+            </div>
+            
+            
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" ng-click="uploadFile()" class="btn-success">Upload CSV</button>
+                </div>
+            </div>
+        </div>
+</div>
+

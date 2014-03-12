@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div ng-repeat="crop in result">
+            <h5>{{crop.cropName}}</h5>
+            <b>Profit:</b>{{crop.profit}}&nbsp;&nbsp;<b>Investment</b>: {{crop.invest}}&nbsp;&nbsp;
+            <b>startEarly</b>:{{crop.startWeek}}&nbsp;&nbsp;
+            <b>startEnd</b>:{{crop.startEndWeek}}&nbsp;&nbsp;<b>Risk:</b>{{crop.risk}}
+            </br><h5>Pheophase Details</h5>
+            <table class="table table-striped table-hover table-bordered" border="0">
+                <tr>
+                    <th>PhenoPhase Name</th>
+                    <th>Duration</th>
+                    <th>Labour</th>
+                    <th>Water</th>
+                    <th>Tmin</th>
+                    <th>Tmax</th>
+                </tr>
+                <tr ng-repeat="phenophase in crop.phenophase">
+                    <td>{{phenophase.phaseName}}</td>
+                    <td>{{phenophase.duration}}</td>
+                    <td>{{phenophase.labor}}</td>
+                    <td>{{phenophase.water}}</td>
+                    <td>{{phenophase.Tmin}}</td>
+                    <td>{{phenophase.Tmax}}</td>
+                </tr>
+            </table>
+            </br>
+            <!--                <b>PhenoPhase Name:</b>{{phenophase.phaseName}}&nbsp;&nbsp;
+                            <b>Tmax</b>: {{phenophase.Tmax}}&nbsp;&nbsp;
+                            <b>Tmin</b>:{{phenophase.Tmin}}&nbsp;&nbsp;
+                            <b>water</b>:{{phenophase.water}}&nbsp;&nbsp;
+                            <b>duration</b>:{{phenophase.duration}}&nbsp;&nbsp;
+                            <b>Labour</b>:{{phenophase.labor}}&nbsp;&nbsp;-->
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="span4 offset1">
+
+        <P class="header " ><b>Note</b>: All details are in Acre </p>
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" >District Name</label>
+                <div class="controls">
+                    <select ng-model="district" ng-options="district for district in districts">
+                        {{district}}
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >Start Month</label>
+                <div class="controls">
+                    <select ng-model="startmonth" ng-options="month for month in months">
+                        {{month}}
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >End Month</label>
+                <div class="controls">
+                    <select ng-model="endmonth" ng-options="month for month in months">
+                        {{month}}
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >Soil Types</label>
+                <div class="controls">
+                    <div class="checkbox" ng-repeat="soil in soilTypes">
+                        <label>
+                            <input ng-model="soilTypes[$index][1]"  type="checkbox">  {{soil[0]}}
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >Investment Required(0-10) per acre </label>
+                <div class="controls">
+                    <input type="number" min="1" max="10" placeholder="Total Investment Required " ng-model="investmentAvailability">
+                </div>
+            </div>
+            <div class="control-group">
+
+                <table  class="table">
+                    <th>
+                    <td>Monthly Water Availability per Day (hours)</td>
+                    <td>Labour Availability per Day (0-10)</td>
+                    </th>
+                    <tr ng-repeat="col in months">
+                        <td><b>{{col}}</b></td>
+                        <td><input   placeholder="Water" ng-model="waterAvailability[col]"></td>
+                        <td> <input type="number" min="1" max="10" placeholder="Labour" ng-model="labourAvailability[col]"></td>
+                    </tr>
+                </table>
+
+            </div>
+
+
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit"  ng-click="generateCropPlan()" class="btn-success">Generate Crop Plan</button>
+                </div>
+            </div>
+        </form>
+        <!--    %%%{{regionNames}}%%%-->
+    </div> <!-- /container -->
+
+    <div class="span6 offset4" >
+
+        <span ng-switch="showOutput">
+            <span ng-switch-when=true>
+                <h2> Top 10 Crop Plans </h2></br></br></br>
+            </span>
+        </span>
+
+        <div ng-repeat="plan in finalOutput">
+
+            <b>{{$index+1}}.</b> 
+            Crop Plan Risk: <b>{{plan.risk}}</b></br>
+            Crop Plan Profit:<b> {{plan.profit}}</b></br></br>
+            <table class="table table-striped table-hover" border="0">
+                <tr>
+                    <th>Crop Name</th>
+                    <th>Crop Start </th>
+                    <th>Crop End</th>
+                    <th>Crop Profit</th>
+                    <th>Crop Base Risk</th>
+                    <th>Crop Investment</th>
+
+                </tr>
+                <tr ng-repeat="crop in plan.crops">
+                    <td>{{crop.name}}</td>
+                    <td>{{crop.start}}</td>
+                    <td>{{crop.end}}</td>
+                    <td>{{crop.profit}}</td>
+                    <td>{{crop.risk}}</td>
+                    <td>{{crop.investment}}</td>
+                </tr>
+            </table>
+            </br>
+            </br>
+            </br>
+        </div>
+
+
+
+    </div>
+</div>
